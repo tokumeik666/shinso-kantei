@@ -525,17 +525,161 @@ strong,.em{color:#e8c97a;font-weight:700}
 .fi{opacity:0;transform:translateY(20px);transition:opacity 0.8s cubic-bezier(0.23,1,0.32,1),transform 0.8s cubic-bezier(0.23,1,0.32,1)}
 .fi.visible{opacity:1;transform:translateY(0)}
 
-/* レスポンシブ */
+/* ===== レスポンシブ（モバイル最適化） ===== */
 @media(max-width:600px){
-  .page{padding:50px 18px}
-  .review-grid{grid-template-columns:1fr}
-  .plan-body{padding:20px 18px}
-  .cta-btn{padding:14px 28px;font-size:0.88rem}
-  .hero-visual{width:min(240px,65vw);height:min(240px,65vw)}
+  /* スナップ無効化 — モバイルではスムーズスクロール */
+  html{scroll-snap-type:none}
+  body{padding-bottom:80px;line-height:1.85}
+
+  /* ページセクション */
+  .page{min-height:auto;padding:40px 16px;scroll-snap-align:none}
+  .page-inner{max-width:100%}
+
+  /* 霧の区切りを縮小 */
+  .mist{height:60px}
+
+  /* 背景エフェクト軽量化 */
   .mandala-wrap{display:none}
-  body{padding-bottom:70px}
-  .section-visual{max-width:300px}
+  .aurora{opacity:0.2}
+  .mouse-light{display:none}
+  .scroll-glow{display:none}
+
+  /* ===== テキスト最適化 ===== */
+  p{font-size:0.95rem;margin-bottom:1.4em;line-height:1.85}
+  .typewriter{font-size:0.95rem;line-height:2;text-align:left}
+  .tw-bold{font-size:1.05rem}
+
+  /* ===== HERO ===== */
+  .hero-visual{width:200px;height:200px;margin-bottom:24px}
+  .hero-title{font-size:1.5rem;letter-spacing:0.15em;margin-bottom:24px}
+  .hero-scroll{margin-top:24px}
+  .scroll-line{height:28px}
+
+  /* ===== アートビジュアル共通 ===== */
+  .art{max-width:200px;margin-bottom:16px}
+  .art-chakra{height:180px}
+  .art-boat{height:120px}
+  .art-boat .boat-wrap{transform-origin:center}
+  .art-boat .boat-svg{width:140px;height:90px}
+  .art-boat .reflection .boat-svg{width:140px;height:90px}
+  .art-compass{height:160px}
+  .art-compass .compass-outer{width:110px;height:110px}
+  .art-compass .compass-inner{width:70px;height:70px}
+  .art-compass .compass-needle{height:50px}
+  .art-compass .compass-mark.n{transform:translate(-50%,-70px)}
+  .art-compass .compass-mark.s{transform:translate(-50%,55px)}
+  .art-compass .compass-mark.e{transform:translate(60px,-50%)}
+  .art-compass .compass-mark.w{transform:translate(-70px,-50%)}
+  .art-portal{height:140px}
+  .art-portal .portal-core{width:28px;height:28px}
+  .art-soul{height:120px}
+  .art-holo{height:160px}
+
+  /* ===== アート+テキスト横並び → 縦積み最適化 ===== */
+  .art-row{flex-direction:column;gap:12px;margin-bottom:28px;align-items:center}
+  .art-row .art-side{width:140px;max-width:140px;order:-1}
+  .art-row .text-side{text-align:center;order:1;width:100%}
+  .art-side .art{max-width:100%;margin:0}
+  .art-side .art-chakra{height:140px}
+  .art-side .art-boat{height:80px}
+  .art-side .art-boat .boat-svg{width:100px;height:60px}
+  .art-side .art-boat .reflection .boat-svg{width:100px;height:60px}
+  .art-side .art-compass{height:120px}
+  .art-side .art-compass .compass-outer{width:80px;height:80px}
+  .art-side .art-compass .compass-inner{width:50px;height:50px}
+  .art-side .art-compass .compass-needle{height:38px}
+  .art-side .art-portal{height:100px}
+  .art-side .art-holo{height:120px}
+  .art-side .art-soul{height:100px}
+
+  /* ===== ストーリー ===== */
+  .story{gap:12px;margin-bottom:20px}
+  .story-img{max-width:200px}
+  .story-text{line-height:1.85}
+
+  /* ===== 口コミセクション ===== */
+  .scroll-area{padding:32px 0}
+  .review-cat{margin-bottom:36px;padding:0 12px}
+  .review-cat-title{font-size:1.05rem;margin-bottom:16px}
+  .review-grid{grid-template-columns:1fr;gap:10px;max-width:100%;padding:0 4px}
+  .review-card{border-radius:10px}
+  .review-card img{border-radius:9px}
+
+  /* ===== マーキー ===== */
+  .marquee-item{width:160px;border-radius:8px}
+  .marquee-item img{width:160px !important}
+  .marquee-track{gap:8px}
+
+  /* ===== 海の比喩 ===== */
+  .ocean{line-height:1.85}
+  .ocean p{font-size:0.95rem;margin-bottom:1.5em}
+  .ocean-keyword{padding:18px 20px;margin:24px 0;font-size:0.92rem;line-height:1.7;border-radius:12px}
+
+  /* 魂の地図リスト */
+  .map-list{margin-top:20px}
+  .map-item{padding:14px 14px;margin-bottom:12px;gap:10px;border-radius:10px}
+  .map-num{width:22px;height:22px;font-size:0.78rem}
+  .map-text{font-size:0.92rem;line-height:1.8}
+
+  /* ===== プラン ===== */
+  .plans{gap:28px;max-width:100%}
+  .plan{border-radius:16px}
+  .plan-visual img{width:calc(100% + 8px);margin:-2px -4px}
+  .plan-body{padding:18px 16px 20px}
+  .plan-name{font-size:1.3rem;letter-spacing:0.1em}
+  .plan-badge{font-size:0.65rem;padding:4px 12px}
+  .plan-sub{font-size:0.75rem}
+  .plan-desc{font-size:0.9rem;line-height:1.85}
+  .plan-note{font-size:0.75rem;padding:8px 12px}
+
+  /* ===== CTA ===== */
+  .cta-area{margin:28px 0}
+  .cta-btn{padding:14px 24px;font-size:0.85rem;letter-spacing:0.08em;border-radius:50px}
+
+  /* ===== 固定CTA（スマホ） ===== */
+  .sticky-cta{padding:10px 14px 14px;
+    padding-bottom:calc(10px + env(safe-area-inset-bottom));
+    background:linear-gradient(to top,#08051af0,#08051acc);
+    border-top:1px solid #c77dff22}
+  .sticky-cta .cta-btn{padding:14px 20px;font-size:0.88rem;width:100%;max-width:320px;
+    border-radius:50px;display:block;margin:0 auto;text-align:center}
+
+  /* ===== テーマカード ===== */
+  .theme-card{padding:20px 16px 8px;border-radius:12px}
+
+  /* ===== 区切り線 ===== */
+  .divider{margin:36px auto;max-width:120px}
+
+  /* ===== クロージング ===== */
+  .closing-name{font-size:0.88rem;letter-spacing:0.2em;margin-top:24px}
+
+  /* ===== ローダー ===== */
+  .loader-img{width:140px;height:140px}
+  .loader-text{font-size:0.75rem}
+
+  /* チャクラリング縮小 */
+  .art-chakra .chakra-ring:nth-child(3){width:45px;height:45px}
+  .art-chakra .chakra-ring:nth-child(4){width:80px;height:80px}
+  .art-chakra .chakra-ring:nth-child(5){width:115px;height:115px}
+  .art-chakra .chakra-ring:nth-child(6){width:150px;height:150px}
 }
+
+/* 小さめのスマホ（iPhone SE等） */
+@media(max-width:380px){
+  .page{padding:32px 14px}
+  .hero-visual{width:170px;height:170px}
+  .hero-title{font-size:1.3rem}
+  p{font-size:0.9rem}
+  .typewriter{font-size:0.9rem}
+  .plan-name{font-size:1.15rem}
+  .plan-desc{font-size:0.85rem}
+  .review-grid{padding:0}
+  .marquee-item{width:140px}
+  .marquee-item img{width:140px !important}
+  .art-row .art-side{width:120px;max-width:120px}
+  .ocean-keyword{font-size:0.85rem;padding:14px 16px}
+}
+
 @media(min-width:601px){.sticky-cta{display:none}}
 </style>
 </head>
@@ -1032,11 +1176,13 @@ window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('loa
   const c=document.getElementById('starsCanvas');if(!c)return;
   const ctx=c.getContext('2d');
   let w,h,stars=[],particles=[];
+  const isMobile=window.innerWidth<=600;
   const colors=[[199,125,255],[217,70,239],[232,201,122],[255,255,255],[168,85,247],[236,172,255]];
   function resize(){w=c.width=window.innerWidth;h=c.height=window.innerHeight;initStars();initParticles()}
   function initStars(){
     stars=[];
-    for(let i=0;i<140;i++){
+    const count=isMobile?60:140;
+    for(let i=0;i<count;i++){
       const col=colors[Math.floor(Math.random()*colors.length)];
       stars.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.4+0.3,
         speed:Math.random()*0.02+0.005,phase:Math.random()*Math.PI*2,
@@ -1045,7 +1191,8 @@ window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('loa
   }
   function initParticles(){
     particles=[];
-    for(let i=0;i<30;i++){
+    const pCount=isMobile?10:30;
+    for(let i=0;i<pCount;i++){
       const col=colors[Math.floor(Math.random()*3)];
       particles.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+1,
         vx:(Math.random()-0.5)*0.3,vy:-Math.random()*0.4-0.1,
