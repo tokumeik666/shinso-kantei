@@ -398,7 +398,7 @@ strong,.em{color:#e8c97a;font-weight:700}
   font-weight:900;text-align:center;color:#e8e2d6;margin-bottom:28px;letter-spacing:0.05em}
 .review-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;max-width:700px;margin:0 auto}
 .review-card{background:#1a1030;border:1px solid #c77dff12;border-radius:12px;overflow:hidden;
-  opacity:0;transform:translateY(20px);transition:opacity 0.5s,transform 0.5s,box-shadow 0.4s,border-color 0.4s}
+  opacity:0.01;transform:translateY(20px);transition:opacity 0.5s,transform 0.5s,box-shadow 0.4s,border-color 0.4s}
 .review-card.visible{opacity:1;transform:translateY(0)}
 .review-card:hover{box-shadow:0 10px 30px #d946ef12;border-color:#c77dff22}
 .review-card img{width:100%;height:auto;display:block}
@@ -522,7 +522,7 @@ strong,.em{color:#e8c97a;font-weight:700}
   background:linear-gradient(90deg,transparent,#c77dff33,#d946ef55,#c77dff33,transparent)}
 
 /* フェードイン */
-.fi{opacity:0;transform:translateY(20px);transition:opacity 0.8s cubic-bezier(0.23,1,0.32,1),transform 0.8s cubic-bezier(0.23,1,0.32,1)}
+.fi{opacity:0.01;transform:translateY(20px);transition:opacity 0.8s cubic-bezier(0.23,1,0.32,1),transform 0.8s cubic-bezier(0.23,1,0.32,1)}
 .fi.visible{opacity:1;transform:translateY(0)}
 
 /* ===== レスポンシブ（モバイル最適化） ===== */
@@ -1244,7 +1244,7 @@ window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('loa
 // ===== フェードイン =====
 const obs=new IntersectionObserver(e=>{
   e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target)}})
-},{threshold:0.08,rootMargin:'0px 0px -20px 0px'});
+},{threshold:0.05,rootMargin:'0px 0px 60px 0px'});
 document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
 
 // ===== 口コミカード stagger =====
@@ -1261,8 +1261,10 @@ document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
       setTimeout(()=>card.classList.add('visible'),idx*80);
       cObs.unobserve(card);
     });
-  },{threshold:0.05});
+  },{threshold:0.01,rootMargin:'0px 0px 200px 0px'});
   cards.forEach(c=>cObs.observe(c));
+  // フォールバック: 5秒後に全カード強制表示（Observerが効かないケース対策）
+  setTimeout(()=>{cards.forEach(c=>c.classList.add('visible'))},5000);
 })();
 
 // ===== タイプライター =====
