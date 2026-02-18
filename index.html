@@ -1176,8 +1176,6 @@ strong,.em{color:#e8c97a;font-weight:700}
 
 <div style="height:100px"></div>
 
-<!-- スマホ固定CTA -->
-<div class="sticky-cta" id="stickyCta"><a href="#" class="cta-btn">LINEで詳細を受け取る</a></div>
 
 
 <script>
@@ -1312,17 +1310,6 @@ document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
   });
 })();
 
-// ===== スマホ固定CTA =====
-(function(){
-  const el=document.getElementById('stickyCta');if(!el)return;
-  let on=false;
-  window.addEventListener('scroll',()=>{
-    const y=window.scrollY;const t=window.innerHeight*1.5;
-    const b=document.documentElement.scrollHeight-window.innerHeight-200;
-    if(y>t&&y<b){if(!on){el.classList.add('show');on=true}}
-    else{if(on){el.classList.remove('show');on=false}}
-  });
-})();
 </script>
 <script src="lp-editor.js?v=3.1"></script>
 </body>
